@@ -2,6 +2,11 @@ import torch
 from continuity.benchmarks.sine import SineBenchmark
 from continuity.operators.shape import OperatorShapes, TensorShape
 from continuity.operators.integralkernel import NeuralNetworkKernel, NaiveIntegralKernel
+from .util import eval_shapes_correct
+
+
+def test_shapes(random_shape_operator_datasets):
+    assert eval_shapes_correct(NaiveIntegralKernel, random_shape_operator_datasets)
 
 
 def test_neuralnetworkkernel():

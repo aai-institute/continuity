@@ -9,9 +9,9 @@ from .util import eval_shapes_correct
 
 
 def test_shapes(random_shape_operator_datasets):
-    operators = []
-    for dataset in random_shape_operator_datasets:
-        operators.append(NeuralOperator(dataset.shapes))
+    operators = [
+        NeuralOperator(dataset.shapes) for dataset in random_shape_operator_datasets
+    ]
     assert eval_shapes_correct(operators, random_shape_operator_datasets)
 
 

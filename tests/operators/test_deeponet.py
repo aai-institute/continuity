@@ -6,6 +6,12 @@ from continuity.benchmarks.sine import SineBenchmark
 from continuity.data import OperatorDataset
 from continuity.trainer import Trainer
 from continuity.operators.losses import MSELoss
+from .util import eval_shapes_correct
+
+
+def test_shapes(random_shape_operator_datasets):
+    operators = [DeepONet(dataset.shapes) for dataset in random_shape_operator_datasets]
+    assert eval_shapes_correct(operators, random_shape_operator_datasets)
 
 
 def test_output_shape():

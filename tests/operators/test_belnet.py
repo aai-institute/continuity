@@ -11,7 +11,10 @@ from .util import eval_shapes_correct
 
 
 def test_shapes(random_shape_operator_datasets):
-    assert eval_shapes_correct(BelNet, random_shape_operator_datasets)
+    operators = []
+    for dataset in random_shape_operator_datasets:
+        operators.append(BelNet(dataset.shapes))
+    assert eval_shapes_correct(operators, random_shape_operator_datasets)
 
 
 def test_belnet_shape():

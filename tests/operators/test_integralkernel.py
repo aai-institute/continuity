@@ -3,8 +3,12 @@ import torch
 
 from continuity.benchmarks.sine import SineBenchmark
 from continuity.operators.shape import OperatorShapes, TensorShape
-from continuity.operators.integralkernel import NeuralNetworkKernel, NaiveIntegralKernel, Kernel
-from .util import eval_shapes_correct
+from continuity.operators.integralkernel import (
+    NeuralNetworkKernel,
+    NaiveIntegralKernel,
+    Kernel,
+)
+from .util import get_shape_mismatches
 
 
 @pytest.fixture
@@ -26,7 +30,7 @@ def dirac_kernel():
     return Dirac
 
 
-def test_shapes(random_shape_operator_datasets, dirac_kernel):
+def test_shapes(random_shape_operator_datasets):
     operators = []
     for dataset in random_shape_operator_datasets:
         kernel = NeuralNetworkKernel(
@@ -63,7 +67,7 @@ def test_neuralnetworkkernel():
     assert k.shape == (n_obs, x_num, y_num, u_dim, v_dim)
 
 
-def test_naiveintegralkernel():
+def test_naiveintegralkernel(dirac_kernel):
     # Data set
     dataset = SineBenchmark(n_train=1).train_dataset
 
@@ -85,8 +89,3 @@ def test_naiveintegralkernel():
 
     v_expected = u / 32
     assert (v == v_expected).all(), f"{v} != {v_expected}"
-
-
-if __name__ == "__main__":
-    test_neuralnetworkkernel()
-    test_naiveintegralkernel()

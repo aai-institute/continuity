@@ -33,7 +33,7 @@ def test_shapes(random_shape_operator_datasets, dirac_kernel):
             shapes=dataset.shapes, kernel_depth=1, kernel_width=1
         )
         operators.append(NaiveIntegralKernel(kernel=kernel))
-    assert eval_shapes_correct(operators, random_shape_operator_datasets)
+    assert get_shape_mismatches(operators, random_shape_operator_datasets) == []
 
 
 def test_neuralnetworkkernel():

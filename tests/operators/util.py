@@ -1,12 +1,12 @@
 from typing import List
 
-from continuity.data import OperatorDataset
+from continuity.data import OperatorDataset, DatasetShapes
 from continuity.operators import Operator
 
 
-def eval_shapes_correct(
+def get_shape_mismatches(
     operators: List[Operator], datasets: List[OperatorDataset]
-) -> bool:
+) -> List[DatasetShapes]:
     """Evaluates if an operator outputs the same shape as a list of datasets expects.
 
     Args:
@@ -14,11 +14,15 @@ def eval_shapes_correct(
         datasets: list of operator datasets on which this property should be checked.
 
     Returns:
-        True if the output of the operator is correct for all datasets, False otherwise.
+        List of `DatasetShapes` for which the evaluation failed.
     """
+    failed_shapes = []
     for operator, dataset in zip(operators, datasets):
         x, u, y, v = dataset[:9]  # batch of size 9
-        output = operator(x, u, y)
-        if output.shape != v.shape:
-            return False
-    return True
+        try:
+            output = operator(x, u, y)
+            if output.shape != v.shape:
+                failed_shapes.append(dataset.shapes)
+        except AssertionError or RuntimeError:
+            failed_shapes.append(dataset.shapes)
+    return failed_shapes

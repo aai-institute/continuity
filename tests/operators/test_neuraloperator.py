@@ -5,14 +5,14 @@ from continuity.operators.integralkernel import NaiveIntegralKernel, NeuralNetwo
 from continuity.operators import NeuralOperator
 from continuity.trainer import Trainer
 from continuity.operators.losses import MSELoss
-from .util import eval_shapes_correct
+from .util import get_shape_mismatches
 
 
 def test_shapes(random_shape_operator_datasets):
     operators = [
         NeuralOperator(dataset.shapes) for dataset in random_shape_operator_datasets
     ]
-    assert eval_shapes_correct(operators, random_shape_operator_datasets)
+    assert get_shape_mismatches(operators, random_shape_operator_datasets) == []
 
 
 @pytest.mark.slow

@@ -21,7 +21,7 @@ def test_shapes(random_shape_operator_datasets):
             OperatorShapes(
                 x=shapes.x,
                 u=hidden_shape,
-                y=shapes.x,
+                y=shapes.y,
                 v=TensorShape(shapes.v.num, latent_channels),
             ),
         ]

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="style.css">
+<h2><a href="../api/continuity/benchmarks/#continuity.benchmarks.SineRegular">SineRegular</a></h2>
+<table class="benchmark-table">
+<thead>
+<tr><th>Operator</th><th>Params</th><th>Learning Curve</th><th>loss/train</th><th>loss/test</th></tr>
+</thead>
+<tbody>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.FourierNeuralOperator">FNO</a></th><td>505</td><td width="150px"><img height="60px" src="img/SineRegular_FNO.png"></td><td>1.22e-07</td><td><b>1.4e-07</b></td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.DeepNeuralOperator">DNO</a></th><td>4257</td><td width="150px"><img height="60px" src="img/SineRegular_DNO.png"></td><td>8.66e-07</td><td>1.17e-06</td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.DeepONet">DeepONet</a></th><td>5872</td><td width="150px"><img height="60px" src="img/SineRegular_DeepONet.png"></td><td>3.21e-06</td><td>3.14e-06</td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.BelNet">BelNet</a></th><td>14056</td><td width="150px"><img height="60px" src="img/SineRegular_BelNet.png"></td><td>1.22e-05</td><td>9.91e-06</td></tr>
+</tbody>
+</table>
+<h2><a href="../api/continuity/benchmarks/#continuity.benchmarks.SineUniform">SineUniform</a></h2>
+<table class="benchmark-table">
+<thead>
+<tr><th>Operator</th><th>Params</th><th>Learning Curve</th><th>loss/train</th><th>loss/test</th></tr>
+</thead>
+<tbody>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.DeepNeuralOperator">DNO</a></th><td>4257</td><td width="150px"><img height="60px" src="img/SineUniform_DNO.png"></td><td>0.000169</td><td><b>0.000333</b></td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.BelNet">BelNet</a></th><td>14056</td><td width="150px"><img height="60px" src="img/SineUniform_BelNet.png"></td><td>2.78e-05</td><td>0.000425</td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.DeepONet">DeepONet</a></th><td>5872</td><td width="150px"><img height="60px" src="img/SineUniform_DeepONet.png"></td><td>0.00214</td><td>0.00642</td></tr>
+<tr><th><a href="../api/continuity/operators/#continuity.operators.FourierNeuralOperator">FNO</a></th><td>505</td><td width="150px"><img height="60px" src="img/SineUniform_FNO.png"></td><td>0.191</td><td>0.238</td></tr>
+</tbody>
+</table>

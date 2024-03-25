@@ -5,6 +5,33 @@ from continuity.operators.integralkernel import NaiveIntegralKernel, NeuralNetwo
 from continuity.operators import NeuralOperator
 from continuity.trainer import Trainer
 from continuity.operators.losses import MSELoss
+from .util import get_shape_mismatches
+
+
+def test_shapes(random_shape_operator_datasets):
+    latent_channels = 3
+    operators = []
+    for dataset in random_shape_operator_datasets:
+        shapes = dataset.shapes
+        hidden_shape = TensorShape(shapes.u.num, latent_channels)
+
+        shapes = [
+            OperatorShapes(x=shapes.x, u=hidden_shape, y=shapes.x, v=hidden_shape),
+            OperatorShapes(x=shapes.x, u=hidden_shape, y=shapes.x, v=hidden_shape),
+            OperatorShapes(
+                x=shapes.x,
+                u=hidden_shape,
+                y=shapes.y,
+                v=TensorShape(shapes.v.num, latent_channels),
+            ),
+        ]
+        layers = [
+            NaiveIntegralKernel(NeuralNetworkKernel(shapes[i], 32, 3))
+            for i in range(len(shapes))
+        ]
+        operators.append(NeuralOperator(dataset.shapes, layers))
+
+    assert get_shape_mismatches(operators, random_shape_operator_datasets) == []
 
 
 @pytest.mark.slow

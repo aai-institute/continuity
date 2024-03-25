@@ -5,6 +5,7 @@ import numpy as np
 
 pytest_plugins = [
     "tests.transforms.fixtures",
+    "tests.operators.fixtures",
 ]
 
 

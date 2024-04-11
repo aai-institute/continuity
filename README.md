@@ -1,1 +1,1 @@
-# continuity-empty
+# continuity → [continuiti](https://github.com/aai-institute/continuiti)
